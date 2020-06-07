@@ -1,3 +1,50 @@
-PieChart {
-  width: 50px
+h1 {
+  padding: 5%;
+  text-align: left;
+}
+.section1 {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.graph-container {
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px
+
+
+}
+
+h2 {
+  text-align: center;
+}
+
+.calendar-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 100%;
+  padding-top: 15%;
+  justify-content: center;
+
+}
+
+.title {
+  font-size: medium;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: left;
+  width: 50%
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 100%;
+  padding-top: 15%;
+  justify-content: center;
 }

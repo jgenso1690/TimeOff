@@ -12,4 +12,9 @@ app.get('/',function (req,res) {
 
 })
 
+app.post('/vacation', (req,res) => {
+  console.log(req)
+  res.end()
+})
+
 app.listen(port,()=> console.log(`Listening at: http://localhost:${port}...`))
