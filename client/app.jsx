@@ -10,6 +10,7 @@ import moment from 'moment';
 import axios from 'axios';
 
 
+
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -20,10 +21,14 @@ class App extends React.Component {
       vacLeft: 8,
       startDate: null,
       endDate: null,
-      focusedInput: 'startDate'
+      focusedInput: 'startDate',
+      typeofDay: '',
+      checked: false,
+      img: 'https://lh3.googleusercontent.com/b2MMAMzEhO0UgMMPysEu2J1Go0NZviSeNsRPs3h9MRJs2nQLfMEqpodGrmzI-Qvs13J-3IcMS7VqzAkGU3g5pjKDUrDW35FqJceCWsHfwIZyFSi_3hKL5zlJnjowc17qbMxJwIobu4amKJI-x1BKud5jixh6XagzB2RMURPv3RkUANQbZ2WbNfp4lLNLmXO9kFL8WLwG13jmb96h9jyG1BjCKydSibTmV9m_GxVuTioYfqxvkF8HE_3LvXlyer_skl8838GKgLPtPo3hlL2duDCe6TBg2z_wVUW8ld7s_qxrGhPMLoZHfGzFoqnIEhcmOCFddnq-wJTf06pBFolzhO8emIATeP0QuvNmSDMw-lPav1KNGo0XmpJ_xSn-HoLo4AqnWR6BZvAv-3TXa9QXmSzqWMfc5nKy6VXMaxK12IxClXRtpwRy9y1B4og44XDaeW1syY3HnH0I1BAXNfawm2QsOMSWlnPIm3qGVJ4UKcT2wfPS-cK5IwqnzTaK-YF7X7zsUeiB3-DhdHWNeMEYWLwJdOv3KXhhJq2tUrsYC8V6-yMip3tfibxV6iQC1Cn_I-iZfix-Lfmi1Y8D1hW0EPWtTjLgED3BVzvtsvWZFqaMkR2_WDUxb60n3Qr51ES6UZTpYjtC8ktQq3nb8gPKvKXXtqHYuS6xvkR-5_k0IAefOoo2rfH7rXmSJOci-Q=w475-h976-no?authuser=0'
     }
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
 
   }
 
@@ -31,13 +36,24 @@ class App extends React.Component {
     axios.post('/vacation', {
       name: this.state.name,
       startDate: this.state.startDate,
-      endDate: this.state.endDate
+      endDate: this.state.endDate,
+      typeofDay: this.state.typeofDay
     })
     .then((response) =>{
       console.log(response);
     })
     .catch(function (error) {
       console.log(error);
+    });
+  }
+
+  handleInputChange(e) {
+    console.log(e)
+    const target = event.target;
+    const value = target.name;
+
+    this.setState({
+      typeofDay: value
     });
   }
 
@@ -50,8 +66,19 @@ class App extends React.Component {
 
 
       <>
+    <div className="id-image">
+         <img src={this.state.img} alt='jimena'/>
+      </div>
 
-    <h1>Welcome, {this.state.name}</h1>
+    <div className="id-container">
+
+      <div className="cardinfo">
+        <div className="name">Jimena Gensollen</div>
+        <div className="position">Customer Service</div>
+        <div className="department">Sales Deparment</div>
+      </div>
+    </div>
+
 
     <div className= "section1">
       <div className='graph-container'>
@@ -67,8 +94,8 @@ class App extends React.Component {
           fontWeight: "800",
         }}
       data={[
-        { title: 'days used', value: this.state.vacUsed, color: '#E38627' },
-        { title: 'days available', value: this.state.vacLeft, color: '#C13C37' },
+        { title: 'days used', value: this.state.vacUsed, color: '#928f8f' },
+        { title: 'days available', value: this.state.vacLeft, color: '#da5c14' },
       ]}
       />
       </div>
@@ -86,8 +113,8 @@ class App extends React.Component {
           fontWeight: "800",
         }}
       data={[
-        { title: 'days used', value: 5, color: '#E38627' },
-        { title: 'days available', value: 10, color: '#C13C37' },
+        { title: 'days used', value: 5, color: '#928f8f' },
+        { title: 'days available', value: 10, color: '#da5c14' },
       ]}
       />
       </div>
@@ -106,8 +133,8 @@ class App extends React.Component {
           fontWeight: "800",
         }}
       data={[
-        { title: 'days used', value: 5, color: '#E38627' },
-        { title: 'days available', value: 10, color: '#C13C37' },
+        { title: 'days used', value: 5, color: '#928f8f' },
+        { title: 'days available', value: 10, color: '#da5c14' },
       ]}
       />
       </div>
@@ -116,10 +143,33 @@ class App extends React.Component {
 
 
       <div className='calendar-container'>
-       <div className='title'>Select a date:</div>
+       <div className='title'>Submit a request:</div>
        <br>
        </br>
-        <DateRangePicker
+
+
+
+      <div>
+        <form>
+          <label className="checkcontainer">
+            Vacation
+            <input name="Vacation" type="checkbox" value={this.state.typeofDay} onChange={this.handleInputChange}/>
+            <span className="checkmark"></span>
+          </label>
+          <label className="checkcontainer">
+            Personal
+            <input name="Personal" type="checkbox" value={this.state.typeofDay} onChange={this.handleInputChange}/>
+            <span className="checkmark"></span>
+          </label>
+          <label className="checkcontainer">
+            Sick
+            <input name="Sick" type="checkbox" value={this.state.typeofDay} onChange={this.handleInputChange}/>
+            <span className="checkmark"></span>
+          </label >
+        </form>
+      </div>
+      <div className="calendar">
+      <DateRangePicker
            startDate={this.state.startDate} // momentPropTypes.momentObj or null,
            startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
            endDate={this.state.endDate} // momentPropTypes.momentObj or null,
@@ -128,13 +178,24 @@ class App extends React.Component {
            focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
            onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
         />
+        </div>
+      </div>
+      <div className="button" onClick={this.handleClick}>
+        <button>Submit request</button>
+        </div>
 
-        <button onClick={this.handleClick}>Submit request</button>
-
+      <div className="Request">
+      <table>
+        <td className="row">Pending:</td>
+          <tr>pending1</tr>
+          <tr>pending1</tr>
+        <td className="row">Approve:</td>
+          <tr>HEllo</tr>
+          <tr>HEllo</tr>
+      </table>
       </div>
 
       </>
-
     )
   }
 }
