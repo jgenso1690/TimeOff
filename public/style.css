@@ -69,9 +69,11 @@ img {
   height: 200px;
   margin-left: auto;
   margin-right: auto;
-  width: 200px
+  width: 200px;
+}
 
-
+#sick {
+  margin-bottom: 23% ;
 }
 
 h2 {
@@ -205,4 +207,10 @@ label {
   font-family: Manjari;
   text-align: left;
   margin-top: 10%
+}
+
+.logout {
+  display: inline;
+  margin-bottom: 20%;
+  margin-left: 20%;
 }
