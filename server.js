@@ -60,7 +60,7 @@ app.post('/vacation', (req,res) => {
   var day1 = day(req.body.startDate)
   var day2 = day(req.body.endDate)
 
-  var used = day2 - day1
+  var used = day2 - day1 + 1
   var queryStr = ''
 
 

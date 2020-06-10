@@ -108,8 +108,15 @@ class App extends React.Component {
     })
     .then((response) =>{
       this.setState({pending: response.data.dates})
-      this.setState({perLeft: this.state.perDays - response.data.used})
-      this.setState({perUsed: response.data.used})
+      if ( this.state.name === 'Jimena Gensollen') {
+        this.setState({perLeft: this.state.perDays - response.data.used})
+        this.setState({perUsed: response.data.used})
+
+      } else {
+        this.setState({sickLeft: this.state.sickDays - response.data.used})
+        this.setState({sickUsed: response.data.used})
+
+      }
     })
     .catch(function (error) {
       console.log(error);
