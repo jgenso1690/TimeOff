@@ -35,4 +35,4 @@ dist/
 .flooignore
 node_modules
 
-index.js
+.env
