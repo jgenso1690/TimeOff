@@ -2,7 +2,7 @@ const express = require('express');
 const app = express()
 const port = process.env.PORT || 4000;
 const bodyParser = require('body-parser');
-const db = require('./index')
+const db = require('./index.js')
 
 const pair = function(string) {
   var arr = string.slice(0,10).split('-')
