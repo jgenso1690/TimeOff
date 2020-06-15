@@ -8,6 +8,9 @@ var connection = mysql.createConnection({
   database: process.env.DB_NAME
 })
 
-connection.connect();
+connection.connect((err, success) => {
+  if (err) return ('data error', err)
+  console.log('success!',success)
+});
 
 module.exports = connection;
