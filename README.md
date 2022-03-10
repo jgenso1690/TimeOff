@@ -1,2 +1,6 @@
 # mvp
-This is a project I completed as a student at [hackreactor](http://hackreactor.com). This project was worked on with a pair.
+Business solution for requesting time off.
+
+Set up:
+npm install
+npm start
